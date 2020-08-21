@@ -10,12 +10,12 @@ import SwiftUI
 
 struct SongView: View {
     let song: Song
-    @State var albumImage = UIImage()
+    @ObservedObject var viewModel: SongViewModel
     
     var body: some View {
         VStack {
             Spacer(minLength: 30)
-            Image(uiImage: albumImage)
+            Image(uiImage: viewModel.albumImage)
             VStack(alignment: .leading, spacing: 8) {
                 Text("Artist: ")
                     .bold()
@@ -26,19 +26,8 @@ struct SongView: View {
                 Spacer()
             }
         }
-        .onAppear(perform: self.getImage)
+        .onAppear(perform: { self.viewModel.getImage(for: self.song) })
         .navigationBarTitle(Text(verbatim: song.trackName), displayMode: .inline)
-    }
-    
-    func getImage() {
-        URLSession.shared.dataTask(with: song.artworkUrl100) { (data, response, error) in
-            guard let data = data else {
-                print("bad image maybe?")
-                return
-            }
-            
-            self.albumImage = UIImage(data: data) ?? UIImage()
-        }.resume()
     }
 }
 
@@ -52,7 +41,7 @@ struct SongView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            SongView(song: song)
+            SongView(song: song, viewModel: SongViewModel())
         }
     }
 }

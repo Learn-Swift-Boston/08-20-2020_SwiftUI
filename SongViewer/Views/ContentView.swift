@@ -8,25 +8,13 @@
 
 import SwiftUI
 
-struct Response: Codable {
-    var results: [Song]
-}
-
-struct Song: Codable {
-    var trackId: Int
-    var artistName: String
-    var collectionName: String // album name
-    var trackName: String
-    var artworkUrl100: URL
-}
-
 struct ContentView: View {
-    @State var songs = [Song]()
+    @ObservedObject var viewModel = SongViewModel()
     
     var body: some View {
         NavigationView {
-            List(songs, id: \.trackId) { song in
-                NavigationLink(destination: SongView(song: song)) {
+            List(viewModel.songs, id: \.trackId) { song in
+                NavigationLink(destination: SongView(song: song, viewModel: self.viewModel)) {
                     VStack(alignment: .leading) {
                         Text(song.trackName)
                             .font(.headline)
@@ -38,26 +26,7 @@ struct ContentView: View {
             }
             .navigationBarTitle("Songs")
         }
-        .onAppear(perform: { self.getData() })
-    }
-    
-    func getData() {
-        let url = URL(string: "https://itunes.apple.com/search?term=311&entity=song")!
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {
-                print("something went wrong!\n\(error?.localizedDescription)")
-                return
-            }
-            
-            guard let results = try? JSONDecoder().decode(Response.self, from: data) else {
-                print("something went wrong while decoding")
-                return
-            }
-            
-            self.songs = results.results
-            
-        }.resume()
+        .onAppear(perform: { self.viewModel.getData() })
     }
 }
 

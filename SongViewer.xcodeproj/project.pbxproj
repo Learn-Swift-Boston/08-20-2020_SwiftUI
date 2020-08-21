@@ -14,6 +14,9 @@
 		6D23DD8024EF37A20066700E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D23DD7F24EF37A20066700E /* Preview Assets.xcassets */; };
 		6D23DD8324EF37A20066700E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D23DD8124EF37A20066700E /* LaunchScreen.storyboard */; };
 		6D23DD8B24EF402E0066700E /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D23DD8A24EF402E0066700E /* SongView.swift */; };
+		6D6A488024EF4A4000B6CD42 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A487F24EF4A4000B6CD42 /* Response.swift */; };
+		6D6A488224EF4A4F00B6CD42 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A488124EF4A4F00B6CD42 /* Song.swift */; };
+		6D6A488424EF4B6200B6CD42 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A488324EF4B6200B6CD42 /* SongViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		6D23DD8224EF37A20066700E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D23DD8424EF37A20066700E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D23DD8A24EF402E0066700E /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		6D6A487F24EF4A4000B6CD42 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		6D6A488124EF4A4F00B6CD42 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		6D6A488324EF4B6200B6CD42 /* SongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,8 @@
 		6D6A487C24EF496000B6CD42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6D6A487F24EF4A4000B6CD42 /* Response.swift */,
+				6D6A488124EF4A4F00B6CD42 /* Song.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,6 +106,7 @@
 		6D6A487E24EF496C00B6CD42 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				6D6A488324EF4B6200B6CD42 /* SongViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -173,10 +182,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D6A488424EF4B6200B6CD42 /* SongViewModel.swift in Sources */,
+				6D6A488224EF4A4F00B6CD42 /* Song.swift in Sources */,
 				6D23DD7724EF37A00066700E /* AppDelegate.swift in Sources */,
 				6D23DD7924EF37A00066700E /* SceneDelegate.swift in Sources */,
 				6D23DD7B24EF37A00066700E /* ContentView.swift in Sources */,
 				6D23DD8B24EF402E0066700E /* SongView.swift in Sources */,
+				6D6A488024EF4A4000B6CD42 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
