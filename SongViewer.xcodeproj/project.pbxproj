@@ -63,12 +63,10 @@
 				6D6A487C24EF496000B6CD42 /* Models */,
 				6D23DD7624EF37A00066700E /* AppDelegate.swift */,
 				6D23DD7824EF37A00066700E /* SceneDelegate.swift */,
-				6D23DD7A24EF37A00066700E /* ContentView.swift */,
 				6D23DD7C24EF37A20066700E /* Assets.xcassets */,
 				6D23DD8124EF37A20066700E /* LaunchScreen.storyboard */,
 				6D23DD8424EF37A20066700E /* Info.plist */,
 				6D23DD7E24EF37A20066700E /* Preview Content */,
-				6D23DD8A24EF402E0066700E /* SongView.swift */,
 			);
 			path = SongViewer;
 			sourceTree = "<group>";
@@ -91,6 +89,8 @@
 		6D6A487D24EF496600B6CD42 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6D23DD7A24EF37A00066700E /* ContentView.swift */,
+				6D23DD8A24EF402E0066700E /* SongView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
