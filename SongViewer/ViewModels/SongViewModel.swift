@@ -7,42 +7,36 @@
 //
 
 import UIKit
+import Combine
 
 class SongViewModel: ObservableObject {
     @Published var songs = [Song]()
     @Published var albumImage = UIImage()
     
+    private var cancellables = [Cancellable]()
+    
     func getData() {
         let url = URL(string: "https://itunes.apple.com/search?term=311&entity=song")!
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {
-                print("something went wrong!\n\(error?.localizedDescription)")
-                return
-            }
-            
-            guard let results = try? JSONDecoder().decode(Response.self, from: data) else {
-                print("something went wrong while decoding")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.songs = results.results
-            }
-            
-        }.resume()
+        cancellables.append(
+            URLSession.shared.dataTaskPublisher(for: url)
+                .map(\.data)
+                .decode(type: Response.self, decoder: JSONDecoder())
+                .map(\.results)
+                .replaceError(with: [])
+                .receive(on: DispatchQueue.main)
+                .assign(to: \.songs, on: self)
+        )
     }
     
     func getImage(for song: Song) {
-        URLSession.shared.dataTask(with: song.artworkUrl100) { (data, response, error) in
-            guard let data = data else {
-                print("bad image maybe?")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.albumImage = UIImage(data: data) ?? UIImage()
-            }
-        }.resume()
+        cancellables.append(
+            URLSession.shared.dataTaskPublisher(for: song.artworkUrl100)
+                .map({ UIImage(data: $0.data) })
+                .replaceError(with: UIImage())
+                .replaceNil(with: UIImage())
+                .receive(on: DispatchQueue.main)
+                .assign(to: \.albumImage, on: self)
+        )
     }
 }
